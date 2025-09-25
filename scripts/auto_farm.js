@@ -1,22 +1,25 @@
-// auto_farm.js - Automatiza la recolección de gotas y el aumento de nivel
-(function() {
-  console.log('Auto Farm Loaded');
+// auto_farm.js - acciones de 'farm' automatizadas en la página
+// Ruta: AutoBotTest/autobot/scripts/auto_farm.js
 
-  // Función para recolectar gotas
-  function collectDrops() {
-    // Lógica para recolectar gotas
-    console.log('Recolectando gotas...');
+(function(){
+  function collectDrops(){
+    // Implementación de ejemplo por DOM, ajustar selectores reales
+    const dropButtons = document.querySelectorAll(".drop-collect");
+    dropButtons.forEach(btn => {
+      try { btn.click(); } catch(e){}
+    });
+    console.log("[AutoBot auto_farm] collectDrops triggered");
   }
 
-  // Función para aumentar el nivel
-  function levelUp() {
-    // Lógica para aumentar el nivel
-    console.log('Subiendo de nivel...');
-  }
+  // Exponer para que background lo invoque via message (si prefieres)
+  chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+    if (msg?.type === "autofarm-collect") {
+      collectDrops();
+      sendResponse({ ok: true });
+    }
+    return true;
+  });
 
-  // Ejecutar las funciones periódicamente
-  setInterval(() => {
-    collectDrops();
-    levelUp();
-  }, 60000); // Ejecutar cada minuto
+  window.autobot = window.autobot || {};
+  window.autobot.collectDrops = collectDrops;
 })();
