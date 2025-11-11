@@ -1,0 +1,54 @@
+{
+  "manifest_version": 3,
+  "name": "WPlace AutoBOT - Custom",
+  "version": "0.2.0",
+  "description": "Automatiza tareas y manipulación de imágenes en wplace.live (versión personalizada).",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+
+  "permissions": [
+    "storage",
+    "scripting",
+    "activeTab",
+    "alarms"
+  ],
+
+  "host_permissions": [
+    "https://wplace.live/*"
+  ],
+
+  "background": {
+    "service_worker": "scripts/background.js"
+  },
+
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_icon": "icons/icon48.png"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["https://wplace.live/*"],
+      "js": [
+        "scripts/config.js",
+        "scripts/utils.js",
+        "scripts/accounts.js",
+        "scripts/captcha_solver.js",
+        "scripts/image_utils.js",
+        "scripts/quantize.js",
+        "scripts/auto_image.js",
+        "scripts/ui_image_loader.js",
+        "scripts/content.js",
+        "scripts/content-script.js",
+        "scripts/overlay.js",
+        "scripts/art_extractor.js",
+        "scripts/art-extractor.js",
+        "scripts/auto_farm.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

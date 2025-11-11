@@ -1,27 +1,19 @@
-// config.js - configuración centralizada del AutoBot
-// Ruta: AutoBotTest/autobot/scripts/config.js
-
+// config.js - CONFIGURACIÓN CENTRALIZADA
 const CONFIG = {
-  // REEMPLAZA con el endpoint real si tu bot hace requests directos
-  apiBase: "https://wplace.live", // <- ajustar si usas proxy/API propio
-  // Cuando contactes el endpoint para pintar (si es necesario)
-  paintEndpoint: "https://wplace.live/api/paint", // <<< REEMPLAZAR según el endpoint real
-  // Intervalos y límites
-  checkIntervalMs: 60_000,   // ciclo principal (background)
-  paintCooldownMs: 700,      // cooldown entre paints (ajusta)
+  apiBase: "https://wplace.live",
+  paintEndpoint: "https://wplace.live/api/paint",
+  checkIntervalMs: 60_000,
+  paintCooldownMs: 700,
   maxRetries: 3,
-  // Parámetros del overlay / canvas
-  canvasSelector: "canvas",  // selector del canvas en wplace (ajusta si diferente)
-  // Selectores de elementos en la web (ajustar según DOM real)
+  canvasSelector: "canvas",
   loginButtonSelector: "#login-btn",
-  turnstileSelector: ".cf-turnstile", // si la web usa Turnstile
-  // Color palette: lista de colores disponibles (hex)
+  turnstileSelector: ".cf-turnstile",
   palette: [
-    "#000000","#FFFFFF","#FF0000","#00FF00","#0000FF",
-    // ... añade paleta completa si la conoces
+    "#000000", "#FFFFFF", "#FF0000", "#00FF00", "#0000FF"
   ],
-  // Límite de reintentos por job
-  jobMaxAttempts: 4
+  jobMaxAttempts: 4,
+  targetSize: 180,     // nuevo: tamaño para redimensionar imágenes
+  dither: true         // nuevo: aplicar dithering al convertir
 };
 
 if (typeof module !== "undefined") module.exports = CONFIG;
